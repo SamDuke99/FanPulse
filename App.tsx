@@ -1,15 +1,19 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-
+import { StyleSheet, View } from "react-native";
 import { store } from "./src/store/store";
-import { Provider } from "react-redux";
-import { Counter } from "./src/components/counter/Counter";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchMatches } from "./src/store/actions/api";
+import ScoreCard from "./src/components/scoreCard/scoreCard";
 
 export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        <Counter></Counter>
+        <ScoreCard
+          homeTeam={{ name: "Leeds", score: 7 }}
+          awayTeam={{ name: "Man Utd", score: 0 }}
+        />
         <StatusBar style='auto' />
       </View>
     </Provider>
